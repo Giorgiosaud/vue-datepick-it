@@ -2,6 +2,7 @@ import './polyfills'
 import Datepicker from './components/DatepickIt.vue'
 import Monthpicker from './components/MonthpickIt.vue'
 import Yearpicker from './components/YearpickIt.vue'
+import DatepickerWrapper from './components/DatepickItWrapper.vue'
 import ClickOutside from './directives/ClickOutside'
 
 const DatepickIt = {
@@ -14,7 +15,15 @@ const DatepickIt = {
     })
   }
 }
-
+const DatepickItWrapper = {
+  install(Vue, options) {
+    Vue.directive('click-outside', ClickOutside)
+    Vue.component(DatepickerWrapper.name, {
+      ...options,
+      ...DatepickerWrapper
+    })
+  }
+}
 const MonthpickIt = {
   install(Vue, options) {
     Vue.directive('click-outside', ClickOutside)
@@ -42,4 +51,4 @@ if (typeof window !== 'undefined' && window.Vue) {
   window.YearpickIt = YearpickIt
 }
 
-export { DatepickIt, MonthpickIt, YearpickIt }
+export {DatepickIt, MonthpickIt, YearpickIt, DatepickItWrapper}

@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import App from './App.vue'
-import { DatepickIt, MonthpickIt, YearpickIt } from './../src/index'
+import { DatepickIt, MonthpickIt, YearpickIt, DatepickItWrapper } from './../src/index'
 
 Vue.use(DatepickIt, {
   sundayFirst: false,
@@ -65,6 +65,7 @@ Vue.use(MonthpickIt, {
   ]
 })
 Vue.use(YearpickIt)
+Vue.use(DatepickItWrapper)
 // eslint-disable-next-line
 new Vue({
   el: '#app',

@@ -1,5 +1,80 @@
 <template>
   <div class="app" :class="{'align-right': alignRight}">
+    <div class="wrapper-date">
+      <div class="datepicker-container with-input">
+        <h3>Range datepicker with input</h3>
+        <div class="datepicker-trigger">
+          <input
+            type="text"
+            id="datepicker-input-trigger-wrapper"
+            :value="formatDates(multipleDates)"
+            placeholder="Select dates"
+          >
+          <datepick-it-wrapper
+            type="date"
+            :trigger-element-id="'datepicker-input-trigger-wrapper'"
+            :mode="'range'"
+            v-model="multipleDates"
+            :min-date="parse('2018-02-28')"
+            :open-on-focus="true"
+            :months-to-show="2"
+            :show-action-buttons="true"
+            @apply="applyMethod"
+            @closed="closedMethod"
+          />
+        </div>
+      </div>
+    </div>
+    <div class="wrapper-month">
+      <div class="datepicker-container with-input">
+        <h3>Range monthpicker with input</h3>
+        <div class="monthpicker-trigger">
+          <input
+            type="text"
+            id="monthpicker-input-trigger-wrapper"
+            :value="formatMonths(multipleDates)"
+            placeholder="Select dates"
+          >
+
+          <datepick-it-wrapper
+            type="month"
+            :trigger-element-id="'monthpicker-input-trigger-wrapper'"
+            v-model="multipleDates"
+            :mode="'range'"
+            :min-month="parse('2018-02')"
+            :years-to-show="2"
+            :show-action-buttons="true"
+            @apply="applyMethod"
+            @closed="closedMethod"
+          />
+        </div>
+      </div>
+    </div>
+    <div>
+      <div class="yearpicker-container with-input">
+        <h3>Range yearpicker with input</h3>
+        <div class="yearpicker-trigger">
+          <input
+            type="text"
+            id="yearpicker-input-trigger-wrapper"
+            :value="formatYears(multipleDates)"
+            placeholder="Select dates"
+          >
+
+          <datepick-it-wrapper
+            type="year"
+            :trigger-element-id="'yearpicker-input-trigger-wrapper'"
+            v-model="multipleDates"
+            :mode="'range'"
+            :min-year="parse('2018')"
+            :years-wrappers-to-show="2"
+            :show-action-buttons="true"
+            @apply="applyMethod"
+            @closed="closedMethod"
+          />
+        </div>
+      </div>
+    </div>
     <div v-if="showDatepickers">
       <div class="datepicker-container with-input">
         <h3>Range datepicker with input</h3>
@@ -293,6 +368,7 @@
 </template>
 
 <script>
+
 import format from 'date-fns/format'
 import parse from 'date-fns/parse'
 import isSameMonth from 'date-fns/is_same_month'
